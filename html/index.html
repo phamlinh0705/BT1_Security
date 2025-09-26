@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các loại mã hóa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Các loại mã hóa</h1>
+    <div id="app">
+        <label for="cipher">Chọn loại mã hóa:</label>
+        <select id="cipher">
+            <option value="caesar">Mã hóa Caesar</option>
+            <option value="playfair">Mã hóa Playfair</option>
+            <option value="affine">Mã hóa Affine</option>
+            <option value="permutation">Mã hóa Hoán vị</option>
+            <option value="vigenere">Mã hóa Vigenere</option>
+        </select>
+        <div id="inputs">
+            <textarea id="inputText" placeholder="Nhập chuỗi..."></textarea>
+            <input id="key" placeholder="Nhập khóa..." />
+            <small id="keyHint" style="display: block; color: gray;">Nhập khóa phù hợp với loại mã hóa đã chọn.</small>
+        </div>
+        <button id="encrypt">Mã hóa</button>
+        <button id="decrypt">Giải mã</button>
+        <textarea id="outputText" placeholder="Kết quả..." readonly></textarea>
+    </div>
+    <script>
+        const cipherSelect = document.getElementById("cipher");
+        const keyHint = document.getElementById("keyHint");
+
+        cipherSelect.addEventListener("change", () => {
+            switch (cipherSelect.value) {
+                case "caesar":
+                    keyHint.textContent = "Khóa là một số nguyên (ví dụ: 3).";
+                    break;
+                case "playfair":
+                    keyHint.textContent = "Khóa là một từ hoặc cụm từ (ví dụ: 'keyword').";
+                    break;
+                case "affine":
+                    keyHint.textContent = "Khóa là hai số nguyên, cách nhau bởi dấu phẩy (ví dụ: '5,8').";
+                    break;
+                case "permutation":
+                    keyHint.textContent = "Khóa là một chuỗi ký tự không trùng lặp (ví dụ: '3124').";
+                    break;
+                case "vigenere":
+                    keyHint.textContent = "Khóa là một từ hoặc cụm từ (ví dụ: 'cipher').";
+                    break;
+                default:
+                    keyHint.textContent = "Nhập khóa phù hợp với loại mã hóa đã chọn.";
+            }
+        });
+    </script>
+    <script src="scripts.js"></script>
+</body>
+</html>
